@@ -54,7 +54,6 @@ import com.openkm.frontend.client.widget.ConfirmPopup;
 import com.openkm.frontend.client.widget.MenuPopup;
 import com.openkm.frontend.client.widget.OriginPanel;
 import com.openkm.frontend.client.widget.filebrowser.menu.*;
-import com.openkm.frontend.client.widget.filebrowser.uploader.DragAndDropUploader;
 import com.openkm.frontend.client.widget.foldertree.FolderSelectPopup;
 
 import java.util.*;
@@ -151,7 +150,7 @@ public class FileBrowser extends Composite implements OriginPanel, HasDocumentEv
 	private Map<String, GWTFilter> mapFilter;
 
 	// Drag and drop box
-	private DragAndDropBox dragAndDropBox;
+	//private DragAndDropBox dragAndDropBox;
 
 	/**
 	 * FileBrowser
@@ -281,11 +280,11 @@ public class FileBrowser extends Composite implements OriginPanel, HasDocumentEv
 		panel.setVerticalAlignment(VerticalPanel.ALIGN_TOP);
 
 		focusPanel = new FocusPanel(panel);
-		dragAndDropBox = new DragAndDropBox();
-		dragAndDropBox.setVisible(false);
-		panel.add(dragAndDropBox);
+		//dragAndDropBox = new DragAndDropBox();
+		//dragAndDropBox.setVisible(false);
+		//panel.add(dragAndDropBox);
 
-		if (DragAndDropUploader.isHTML5DragAndDropApiSupported()) {
+		/*if (DragAndDropUploader.isHTML5DragAndDropApiSupported()) {
 			focusPanel.addDragEnterHandler(new DragEnterHandler() {
 				@Override
 				public void onDragEnter(DragEnterEvent arg0) {
@@ -295,7 +294,7 @@ public class FileBrowser extends Composite implements OriginPanel, HasDocumentEv
 					}
 				}
 			});
-		}
+		}*/
 
 		initWidget(focusPanel);
 	}
@@ -419,7 +418,7 @@ public class FileBrowser extends Composite implements OriginPanel, HasDocumentEv
 		templatesMenuPopup.langRefresh();
 		mailMenuPopup.langRefresh();
 		fBController.langRefresh();
-		dragAndDropBox.langRefresh();
+	//	dragAndDropBox.langRefresh();
 	}
 
 	/**

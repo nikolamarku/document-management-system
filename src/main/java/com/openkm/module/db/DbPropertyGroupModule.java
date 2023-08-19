@@ -49,10 +49,7 @@ import org.springframework.security.core.Authentication;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class DbPropertyGroupModule implements PropertyGroupModule {
 	private static Logger log = LoggerFactory.getLogger(DbPropertyGroupModule.class);
@@ -151,6 +148,17 @@ public class DbPropertyGroupModule implements PropertyGroupModule {
 		log.debug("removeGroup: void");
 	}
 
+	private boolean hasPgPermission(PropertyGroup pg){
+		boolean allowed = true;
+		if(pg.getRoles().size() > 0) {
+			final Set<String> pgRoles = new HashSet<>(pg.getRoles());
+			pgRoles.retainAll(PrincipalUtils.getRoles());
+			allowed = pgRoles.size() > 0;
+		}
+		//log.info(pg.getName()+": "+allowed);
+		return allowed;
+	}
+
 	@Override
 	public List<PropertyGroup> getGroups(String token, String nodeId) throws IOException, ParseException, AccessDeniedException,
 			PathNotFoundException, DatabaseException {
@@ -179,7 +187,7 @@ public class DbPropertyGroupModule implements PropertyGroupModule {
 			// Only return registered property definitions
 			for (String pgName : propGroups) {
 				for (PropertyGroup pg : pgf.keySet()) {
-					if (pg.getName().equals(pgName)) {
+					if (pg.getName().equals(pgName) && hasPgPermission(pg)) {
 						ret.add(pg);
 					}
 				}
@@ -216,7 +224,7 @@ public class DbPropertyGroupModule implements PropertyGroupModule {
 			// Only return registered property definitions
 			for (RegisteredPropertyGroup rpg : RegisteredPropertyGroupDAO.getInstance().findAll()) {
 				for (PropertyGroup pg : pgf.keySet()) {
-					if (pg.getName().equals(rpg.getName())) {
+					if (pg.getName().equals(rpg.getName()) && hasPgPermission(pg)) {
 						ret.add(pg);
 					}
 				}

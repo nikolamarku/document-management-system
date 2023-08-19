@@ -22,6 +22,8 @@
 package com.openkm.bean;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author pavila
@@ -37,6 +39,8 @@ public class PropertyGroup implements Serializable {
 	private String name = "";
 	private boolean visible = true;
 	private boolean readonly = false;
+
+	private final Set<String> roles = new HashSet<>();
 
 	public String getLabel() {
 		return label;
@@ -68,6 +72,16 @@ public class PropertyGroup implements Serializable {
 
 	public void setReadonly(boolean readonly) {
 		this.readonly = readonly;
+	}
+
+
+
+	public Set<String> getRoles() {
+		return roles;
+	}
+
+	public void addRole(String role){
+		this.roles.add(role);
 	}
 
 	public String toString() {

@@ -195,6 +195,9 @@ public class FormUtils {
 							if (item != null) pg.setVisible(Boolean.valueOf(item.getNodeValue()));
 							item = nForm.getAttributes().getNamedItem("readonly");
 							if (item != null) pg.setReadonly(Boolean.valueOf(item.getNodeValue()));
+							item = nForm.getAttributes().getNamedItem("roles");
+							if(item != null)
+								Arrays.stream(item.getNodeValue().split(",")).forEach(pg::addRole);
 
 							NodeList nlField = nForm.getChildNodes();
 							List<FormElement> fe = parseField(nlField);

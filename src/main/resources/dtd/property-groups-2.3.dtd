@@ -5,6 +5,7 @@
 <!ATTLIST property-group
 	label CDATA #REQUIRED
 	name CDATA #REQUIRED
+	roles CDATA #IMPLIED
 	visible (true | false) "true"
 	readonly (true | false) "false"
 >
