@@ -58,7 +58,7 @@ public class SearchIn extends Composite implements HasPropertyHandler {
 	public SearchControl searchControl;
 	public FuturamaWalking futuramaWalking;
 	public Status status;
-	private int searchMode = SearchControl.SEARCH_MODE_SIMPLE;
+	private int searchMode = SearchControl.SEARCH_MODE_ADVANCED;
 	private int height = 0;
 	private int tabWidth = 0;
 	private int controlWidth = 0;
@@ -88,8 +88,10 @@ public class SearchIn extends Composite implements HasPropertyHandler {
 		searchAdvanced.subject.addKeyUpHandler(searchControl.keyUpHandler);
 
 		// By default is enabled simple mode
-		tabPanel.add(searchSimple, Main.i18n("search.simple"));
-		tabPanel.selectTab(0);
+		tabPanel.add(searchNormal, Main.i18n("search.normal"));
+		tabPanel.add(searchAdvanced, Main.i18n("search.advanced"));
+		tabPanel.add(searchMetadata, Main.i18n("search.metadata"));
+		tabPanel.selectTab(2);
 
 		Image verticalLine = new Image("img/transparent_pixel.gif");
 		verticalLine.setStyleName("okm-Vertical-Line-Border");

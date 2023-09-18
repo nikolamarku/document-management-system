@@ -69,7 +69,7 @@ public class SearchControl extends Composite {
 	public CheckBox saveUserNews;
 	private HTML resultsPageText;
 	private HTML searchTypeText;
-	private int searchMode = SEARCH_MODE_SIMPLE;
+	private int searchMode = SEARCH_MODE_ADVANCED;
 	private int resultsViewMode = RESULTS_VIEW_COMPACT;
 	private int minSearchCharacters = 3;
 
@@ -82,6 +82,7 @@ public class SearchControl extends Composite {
 		table.setCellSpacing(2);
 		scrollPanel = new ScrollPanel(table);
 		advancedView = new CheckBox(Main.i18n("search.view.advanced"));
+		advancedView.setValue(true);
 		advancedView.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -108,6 +109,7 @@ public class SearchControl extends Composite {
 			}
 		});
 		showPropertyGroups = new CheckBox(Main.i18n("search.view.property.groups"));
+		showPropertyGroups.setValue(true);
 		showPropertyGroups.addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -169,7 +171,7 @@ public class SearchControl extends Composite {
 
 				if (!searchAdvanced.categoryUuid.equals("")) {
 					params.setCategoryUuid(searchAdvanced.categoryUuid);
-					params.setCategoryPath(searchAdvanced.categoryPath.getText().substring(16)); // removes /okm:category 
+					params.setCategoryPath(searchAdvanced.categoryPath.getText().substring(16)); // removes /okm:category
 				}
 
 				params.setContent(searchNormal.content.getText());
@@ -504,7 +506,7 @@ public class SearchControl extends Composite {
 	}
 
 	/**
-	 * Call Back save search 
+	 * Call Back save search
 	 */
 	final AsyncCallback<Long> callbackSaveSearch = new AsyncCallback<Long>() {
 		public void onSuccess(Long result) {
