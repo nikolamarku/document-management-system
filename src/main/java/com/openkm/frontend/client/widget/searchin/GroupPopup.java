@@ -92,6 +92,7 @@ public class GroupPopup extends DialogBox {
 					GWTPropertyParams param = new GWTPropertyParams();
 					param.setGrpName(grpName);
 					param.setGrpLabel(grpLabel);
+					formElement.setLabel(grpLabel + " - " + formElement.getLabel());
 					param.setFormElement(formElement);
 					switch (origin) {
 						case UIDockPanelConstants.SEARCH:
